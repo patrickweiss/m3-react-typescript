@@ -16,7 +16,7 @@ interface IState {
 
 export default class App extends React.PureComponent<IProps, IState> {
 
-  constructor(props:any) {
+  constructor(props:IProps) {
     console.log("new App component will be initialized");
     super(props);
 
