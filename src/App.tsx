@@ -2,21 +2,21 @@ import React from 'react';
 import SimpleAsset from './components/SimpleAsset'
 import mongoose from 'mongoose';
 
-interface IProps{}
+interface IProps { }
 
-export interface IAssetData{
-    _id:string;
-    asset_name:string;
-    asset_value:number;
+export interface IAssetData {
+  _id: string;
+  asset_name: string;
+  asset_value: number;
 }
 
 interface IState {
-    assets: JSX.Element[];
-  }
+  assets: JSX.Element[];
+}
 
 export default class App extends React.PureComponent<IProps, IState> {
 
-  constructor(props:IProps) {
+  constructor(props: IProps) {
     console.log("new App component will be initialized");
     super(props);
 
@@ -24,13 +24,13 @@ export default class App extends React.PureComponent<IProps, IState> {
     this.handleDeleteAsset = this.handleDeleteAsset.bind(this);
 
     const exampleAsset = {
-        _id: mongoose.Types.ObjectId().toString(),
-        asset_name: "This is an example, press Edit to change name and Value",
-        asset_value: 0
-      }
+      _id: mongoose.Types.ObjectId().toString(),
+      asset_name: "This is an example, press Edit to change name and Value",
+      asset_value: 0
+    }
 
     this.state = {
-        assets: [exampleAsset].map(asset => <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)
+      assets: [exampleAsset].map(asset => <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)
     }
   }
   render() {
@@ -51,7 +51,7 @@ export default class App extends React.PureComponent<IProps, IState> {
   }
   handleCreateAsset() {
     console.log("handleCreateAsset invoked");
-    const newAsset:IAssetData = {
+    const newAsset: IAssetData = {
       _id: mongoose.Types.ObjectId().toString(),
       asset_name: "",
       asset_value: 0
@@ -69,7 +69,7 @@ export default class App extends React.PureComponent<IProps, IState> {
   }
 
 
-  handleDeleteAsset(event:any) {
+  handleDeleteAsset(event: any) {
     const IdOfAssetToDelete = event.target.id;
     console.log("Delete asset with _id:" + IdOfAssetToDelete);
 

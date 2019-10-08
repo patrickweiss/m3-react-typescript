@@ -63,7 +63,7 @@ export default class SimpleAsset extends React.PureComponent<IProps, IState> {
             )
     }
 
-    handleNameChange(event:any) {
+    handleNameChange(event: any) {
         const newAsset = {
             _id: this.state.asset._id,
             asset_name: event.target.value,
