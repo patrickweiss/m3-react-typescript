@@ -43,7 +43,7 @@ export default class App extends React.PureComponent<IProps, IState> {
         <table>
           <tbody>
             <tr><th>description</th><th>value</th><th>action</th></tr>
-            {this.state.assets.map(asset => <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)}
+            {this.state.assets.map(asset=> <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)}
           </tbody>
         </table>
       </div>
