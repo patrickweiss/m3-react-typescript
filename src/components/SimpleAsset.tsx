@@ -12,16 +12,21 @@ interface IProps{
     asset:IAssetData;
 }
 
+interface ImyProps{
+    onDelete:Function;
+    edit:boolean;
+    asset:IAssetData;
+}
 
-interface IState{
+interface ImyState{
     delete_function:any;
     edit_mode:boolean;
     asset:IAssetData;
 }
 
-export default class SimpleAsset extends React.PureComponent<IProps, IState> {
+export default class SimpleAsset extends React.PureComponent<ImyProps,ImyState> {
 
-    constructor(props:IProps) {
+    constructor(props:ImyProps) {
         super(props);
 
         this.handleEdit = this.handleEdit.bind(this);
@@ -63,13 +68,13 @@ export default class SimpleAsset extends React.PureComponent<IProps, IState> {
             )
     }
 
-    handleNameChange(event: any) {
-        const newAsset = {
+    handleNameChange(event:any) {
+        const newAsset:IAssetData = {
             _id: this.state.asset._id,
             asset_name: event.target.value,
             asset_value: this.state.asset.asset_value
         }
-        const newState:IState = {
+        const newState:ImyState = {
             delete_function: this.state.delete_function,
             edit_mode: this.state.edit_mode,
             asset:newAsset

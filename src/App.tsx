@@ -11,7 +11,7 @@ export interface IAssetData {
 }
 
 interface IState {
-  assets: JSX.Element[];
+  assets: IAssetData[];
 }
 
 export default class App extends React.PureComponent<IProps, IState> {
@@ -30,7 +30,7 @@ export default class App extends React.PureComponent<IProps, IState> {
     }
 
     this.state = {
-      assets: [exampleAsset].map(asset => <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)
+      assets: [exampleAsset],
     }
   }
   render() {
@@ -43,7 +43,7 @@ export default class App extends React.PureComponent<IProps, IState> {
         <table>
           <tbody>
             <tr><th>description</th><th>value</th><th>action</th></tr>
-            {this.state.assets}
+            {this.state.assets.map(asset => <SimpleAsset key={asset._id} onDelete={this.handleDeleteAsset} asset={asset} edit={false} />)}
           </tbody>
         </table>
       </div>
@@ -53,12 +53,12 @@ export default class App extends React.PureComponent<IProps, IState> {
     console.log("handleCreateAsset invoked");
     const newAsset: IAssetData = {
       _id: mongoose.Types.ObjectId().toString(),
-      asset_name: "",
-      asset_value: 0
+      asset_name: "new Asset",
+      asset_value:0
     }
     let newAssets = this.state.assets.slice();
 
-    newAssets.push(<SimpleAsset key={newAsset._id} onDelete={this.handleDeleteAsset} edit={true} asset={newAsset} />);
+    newAssets.push(newAsset);
 
     this.setState(
       {
@@ -74,8 +74,8 @@ export default class App extends React.PureComponent<IProps, IState> {
     console.log("Delete asset with _id:" + IdOfAssetToDelete);
 
     let newAssets = this.state.assets.filter(asset => {
-      console.log("asset.key:" + asset.key + " IdOfAssetToDelete:" + IdOfAssetToDelete + " " + (asset.key !== IdOfAssetToDelete));
-      return asset.key !== IdOfAssetToDelete;
+      console.log("asset._id:" + asset._id + " IdOfAssetToDelete:" + IdOfAssetToDelete + " " + (asset._id !== IdOfAssetToDelete));
+      return asset._id !== IdOfAssetToDelete;
     })
     this.setState(
       {
