@@ -83,5 +83,22 @@ export default class App extends React.PureComponent<IProps, IState> {
       }
     );
   }
+/*
+  handleDeleteAsset(event: MouseEvent) {
+    const button = event.target as HTMLButtonElement
+    const IdOfAssetToDelete = button.id;
+    console.log("Delete asset with _id:" + IdOfAssetToDelete);
+
+    let newAssets = this.state.assets.filter(asset => {
+      console.log("asset._id:" + asset._id + " IdOfAssetToDelete:" + IdOfAssetToDelete + " " + (asset._id !== IdOfAssetToDelete));
+      return asset._id !== IdOfAssetToDelete;
+    })
+    this.setState(
+      {
+        assets: newAssets
+      }
+    );
+  }
+  */
 
 }
