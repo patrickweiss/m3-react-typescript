@@ -30,7 +30,7 @@ export default class App extends React.PureComponent<IProps, IState> {
     }
 
     this.state = {
-      assets: [exampleAsset],
+      assets: [exampleAsset]
     }
   }
   render() {
@@ -57,9 +57,7 @@ export default class App extends React.PureComponent<IProps, IState> {
       asset_value:0
     }
     let newAssets = this.state.assets.slice();
-
     newAssets.push(newAsset);
-
     this.setState(
       {
         assets: newAssets
@@ -67,8 +65,7 @@ export default class App extends React.PureComponent<IProps, IState> {
     );
     console.log(newAsset);
   }
-
-  handleDeleteAsset(event: MouseEvent) {
+  handleDeleteAsset(event: any) {
     const button = event.target as HTMLButtonElement
     const IdOfAssetToDelete = button.id;
     console.log("Delete asset with _id:" + IdOfAssetToDelete);

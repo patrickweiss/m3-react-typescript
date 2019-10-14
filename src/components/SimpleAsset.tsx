@@ -47,7 +47,7 @@ export default class SimpleAsset extends React.PureComponent<IProps,IState> {
                 <tr>
                     <td><input type="text" name="name" value={this.state.asset.asset_name} onChange={this.handleNameChange} /></td>
                     <td><input type="number" name="value" value={this.state.asset.asset_value} onChange={this.handleValueChange} /> €</td>
-                    <td> <button onClick={this.handleSave} id={this.state.asset._id}>save</button></td>
+                    <td><button onClick={this.handleSave} id={this.state.asset._id}>save</button></td>
                 </tr>
             )
         else
@@ -64,25 +64,23 @@ export default class SimpleAsset extends React.PureComponent<IProps,IState> {
     }
 
     handleNameChange(event:any) {
-        const newAsset:IAssetData = {
+      const inputElement = event.target as HTMLInputElement;
+       this.setState({
+        asset: {
             _id: this.state.asset._id,
-            asset_name: event.target.value,
+            asset_name: inputElement.value,
             asset_value: this.state.asset.asset_value
         }
-        const newState:IState = {
-            delete_function: this.state.delete_function,
-            edit_mode: this.state.edit_mode,
-            asset:newAsset
-        }
-        this.setState(newState);
+    });
     }
 
     handleValueChange(event:any) {
+        const inputElement = event.target as HTMLInputElement;
         this.setState({
             asset: {
                 _id: this.state.asset._id,
                 asset_name: this.state.asset.asset_name,
-                asset_value: event.target.value
+                asset_value: parseFloat(inputElement.value)
             }
         });
     }
