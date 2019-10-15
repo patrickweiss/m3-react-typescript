@@ -1,27 +1,27 @@
 import React from 'react';
-import {IAssetData} from '../App';
+import { IAssetData } from '../App';
 
 //this file defines the React component that renders a single asset to the browser window
 //it also contains the logic to change asset properties and save the changes to the database
 //most of the used React framework features are already explained in the comments of App.js
 //so this code hopefully mostly explains itself ...
 
-interface IProps{
-    onDelete:Function;
-    edit:boolean;
-    asset:IAssetData;
+interface IProps {
+    onDelete: Function;
+    edit: boolean;
+    asset: IAssetData;
 }
 
 
-interface IState{
-    delete_function:any;
-    edit_mode:boolean;
-    asset:IAssetData;
+interface IState {
+    delete_function: any;
+    edit_mode: boolean;
+    asset: IAssetData;
 }
 
-export default class SimpleAsset extends React.PureComponent<IProps,IState> {
+export default class SimpleAsset extends React.PureComponent<IProps, IState> {
 
-    constructor(props:IProps) {
+    constructor(props: IProps) {
         super(props);
 
         this.handleEdit = this.handleEdit.bind(this);
@@ -39,9 +39,9 @@ export default class SimpleAsset extends React.PureComponent<IProps,IState> {
     }
 
     render() {
-        
+
         //if the component is in edit mode, it will render different than if it just shows the data
-        
+
         if (this.state.edit_mode)
             return (
                 <tr>
@@ -63,18 +63,20 @@ export default class SimpleAsset extends React.PureComponent<IProps,IState> {
             )
     }
 
-    handleNameChange(event:any) {
-      const inputElement = event.target as HTMLInputElement;
-       this.setState({
-        asset: {
-            _id: this.state.asset._id,
-            asset_name: inputElement.value,
-            asset_value: this.state.asset.asset_value
-        }
-    });
+    handleEdit() {
+        this.setState({ edit_mode: true });
     }
-
-    handleValueChange(event:any) {
+    handleNameChange(event: any) {
+        const inputElement = event.target as HTMLInputElement;
+        this.setState({
+            asset: {
+                _id: this.state.asset._id,
+                asset_name: inputElement.value,
+                asset_value: this.state.asset.asset_value
+            }
+        });
+    }
+    handleValueChange(event: any) {
         const inputElement = event.target as HTMLInputElement;
         this.setState({
             asset: {
@@ -85,10 +87,8 @@ export default class SimpleAsset extends React.PureComponent<IProps,IState> {
         });
     }
 
-    handleSave(event:any) {
+    handleSave(event: any) {
         this.setState({ edit_mode: false });
     }
-    handleEdit() {
-        this.setState({ edit_mode: true });
-    }
+
 }

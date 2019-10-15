@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Refactor the App to be a shopping
+## Refactor the App to be a product management app
 
 For instructions see:
 
